@@ -116,3 +116,6 @@ public
 
 # DynamoDB Local files
 .dynamodb/
+
+#USER OWN NEED
+client_secret.json
