@@ -8,7 +8,7 @@ import * as errorHandler from "./middlewares/errorHandler";
 
 const app = express();
 
-const APP_PORT = process.env.APP_PORT || 4000;
+const APP_PORT = process.env.PORT || 4000;
 const APP_HOST = process.env.APP_HOST || "127.0.0.1";
 
 app.use(cors());
@@ -26,7 +26,7 @@ app.use("/api", routes);
 
 app.use(errorHandler.genericErrorHandler);
 
-app.listen(APP_PORT, APP_HOST, () => {
+app.listen(APP_PORT, () => {
   console.log(`Server Started on:: ${APP_HOST}:${APP_PORT}/api`);
 });
 
