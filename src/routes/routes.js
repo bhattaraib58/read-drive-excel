@@ -12,13 +12,4 @@ router.get("/", (req, res) => {
 
 router.use("/excel", excelRoute);
 
-router.use("*", (req, res) => {
-  console.log(`Path/Method Not Supported:: ${req.url} ${req.method}`);
-  res.json({
-    error: {
-      message: "Path/Method Not Supported"
-    }
-  });
-});
-
 export default router;

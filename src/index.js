@@ -8,8 +8,8 @@ import * as errorHandler from "./middlewares/errorHandler";
 
 const app = express();
 
-const APP_PORT = process.env.PORT || 4000;
-const APP_HOST = process.env.APP_HOST || "127.0.0.1";
+const PORT = process.env.PORT || 4000;
+const HOST = process.env.HOST || "127.0.0.1";
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,10 +24,19 @@ app.use(
 //API Routes
 app.use("/api", routes);
 
+app.use("*", (req, res) => {
+  console.log(`Path/Method Not Supported:: ${req.url} ${req.method}`);
+  res.json({
+    error: {
+      message: "Path/Method Not Supported"
+    }
+  });
+});
+
 app.use(errorHandler.genericErrorHandler);
 
-app.listen(APP_PORT, () => {
-  console.log(`Server Started on:: ${APP_HOST}:${APP_PORT}/api`);
+app.listen(PORT,HOST, () => {
+  console.log(`Server Started on:: ${HOST}:${PORT}/api`);
 });
 
 export default app;
