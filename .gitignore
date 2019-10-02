@@ -118,5 +118,4 @@ public
 .dynamodb/
 
 #USER OWN NEED
-./client_secret.json
-client*.*
+client_secret.json

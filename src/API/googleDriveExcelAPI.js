@@ -1,6 +1,8 @@
 import GoogleSpreadsheet from "google-spreadsheet";
 
-const credentials = require("../../client_secret.json");
+let credentials =process.env.client_secret || require("../../client_secret.json");
+
+credentials =JSON.parse(JSON.stringify(credentials));
 
 const link =
   "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit";

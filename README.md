@@ -1,7 +1,30 @@
 
-# Project Title
+# READ GOOGLE DRiVE EXCEL
 
 Nodejs, Express server which serves API after reading the excel file from Google Drive
+
+
+# USAGE
+
+127.0.0.1/api/excel/fileID
+
+OR
+
+https://read-drive-excel.herokuapp.com/api/excel/fileID
+
+
+If link is "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit"
+where fileID is :
+1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+
+so link is:
+https://read-drive-excel.herokuapp.com/api/excel/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+
+
+Note: This API can only read publicly shared excel file.
+
+If you want to read private excel file and get api,
+share file with this email: read-google-spreadsheet@intern-report-generation.iam.gserviceaccount.com
 
 ---
 ## Requirements
