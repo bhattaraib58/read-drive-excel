@@ -9,7 +9,6 @@ import * as errorHandler from "./middlewares/errorHandler";
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || "127.0.0.1";
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -35,8 +34,8 @@ app.use("*", (req, res) => {
 
 app.use(errorHandler.genericErrorHandler);
 
-app.listen(PORT,HOST, () => {
-  console.log(`Server Started on:: ${HOST}:${PORT}/api`);
+app.listen(PORT, () => {
+  console.log(`Server Started on::${PORT}/api`);
 });
 
 export default app;
