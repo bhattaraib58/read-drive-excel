@@ -13,6 +13,8 @@ let credentials = {
   'client_x509_cert_url': process.env.client_x509_cert_url
 };
 
+console.log(credentials)
+
 const link =
   "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit";
 
