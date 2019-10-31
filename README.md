@@ -1,30 +1,33 @@
-
-# READ GOOGLE DRiVE EXCEL
+# READ GOOGLE DRIVE EXCEL
 
 Nodejs, Express server which serves API after reading the excel file from Google Drive
 
 
 # USAGE
+If link is 
+``https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit``  
+  
+where fileID is :  
+1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms  
 
-127.0.0.1/api/excel/fileID
-
-OR
-
-https://read-drive-excel.herokuapp.com/api/excel/fileID
-
-
-If link is "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit"
-where fileID is :
-1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
-
-so link is:
+so request link is:
 https://read-drive-excel.herokuapp.com/api/excel/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
 
 
-Note: This API can only read publicly shared excel file.
+**Note: This API can only read publicly shared excel file.**
 
-If you want to read private excel file and get api,
-share file with this email: read-google-spreadsheet@intern-report-generation.iam.gserviceaccount.com
+If you want to read private excel file and get api, share file with this email:
+
+**google-spreadsheets@intern-report.iam.gserviceaccount.com**
+
+# USAGE LINK
+For Local:  
+``127.0.0.1/api/excel/fileID``
+
+OR
+
+For Live  
+``https://read-drive-excel.herokuapp.com/api/excel/fileID``
 
 ---
 ## Requirements
@@ -69,17 +72,9 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Install
 
-    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
-    $ cd PROJECT_TITLE
+    $ git clone git@github.com:bhattaraib58/read-drive-excel.git
+    $ cd read-drive-excel
     $ yarn install
-
-## Configure app
-
-Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
-
-- A setting;
-- Another setting;
-- One more setting;
 
 ## Running the project
 
@@ -92,3 +87,17 @@ Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
     $ yarn build
 	OR
     $ npm run-script build
+
+
+## Running the Development
+
+    $ yarn start:dev
+	OR
+    $ npm run-script start:dev
+
+## Simple build for Development
+
+    $ yarn build:dev
+	OR
+    $ npm run-script build:dev
+
