@@ -8,7 +8,13 @@
     "start:dev": "nodemon --inspect lib start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib",
-    "build:dev": "babel src --watch --out-dir lib"
+    "build:dev": "babel src --watch --out-dir lib",
+    "eslint": "eslint src",
+    "eslint:fix": "eslint --fix src",
+    "lint": "yarn prettier && yarn eslint",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "prettier": "prettier \"{src,api}/**/*.js\" \"{src,api}/**/*.jsx\"",
+    "prettier:fix": "prettier --write \"{src,api}/**/*.js\" \"{src,api}/**/*.jsx\""
   },
   "author": "bhattaraib58",
   "license": "ISC",
@@ -29,6 +35,10 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "eslint": "^6.6.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2"
   }

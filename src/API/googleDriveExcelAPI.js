@@ -1,14 +1,14 @@
-import GoogleSpreadsheet from "google-spreadsheet";
-import waterfall from "async/waterfall";
-import credentials from "../constants/credentials";
+import GoogleSpreadsheet from 'google-spreadsheet';
+import waterfall from 'async/waterfall';
+import credentials from '../constants/credentials';
 
 /**
  * Read all worksheets data and handle their promise as one.
  *
  * @param {*} worksheets
- * @returns {Worksheet Array or Error}
+ * @returns {}  Promise - Worksheet Array or Error
  */
-async function getAllRows(worksheets) {
+function getAllRows(worksheets) {
   function getWorksheetRows(worksheet) {
     // Returns promise object, worksheet.getRows reads the single worksheet at a time
     return new Promise((resolve, reject) => {
@@ -17,30 +17,21 @@ async function getAllRows(worksheets) {
           reject(worksheetError);
         }
 
-        resolve(dataRows);
+        resolve({
+          title: worksheet.title,
+          data: dataRows,
+        });
       });
     });
   }
 
-  async function getWorksheetData(worksheet) {
-    // Async await are used for solving map map Promise data.
-    return await getWorksheetRows(worksheet);
-  }
-
   // Get all worksheets promise data,
-  return await Promise.all(
-    worksheets.map(async worksheet => await getWorksheetData(worksheet))
-  );
+  return Promise.all(worksheets.map(worksheet => getWorksheetRows(worksheet)));
 }
 
 export function readExcelFileById(fileId) {
   // Create a document object using the ID of the spreadsheet - obtained from its URL.
   const doc = new GoogleSpreadsheet(fileId);
-
-  const sheetData = {
-    title: null,
-    data: []
-  };
 
   return new Promise((resolve, reject) => {
     waterfall(
@@ -55,15 +46,16 @@ export function readExcelFileById(fileId) {
         },
         function getWorksheets(docInfo, callback) {
           //set worksheet title and move to next to get all worksheet data
-          sheetData.title = docInfo.title;
-          callback(null, docInfo.worksheets);
+          callback(null, docInfo.title, docInfo.worksheets);
         },
-        function getWorksheetsData(worksheets, callback) {
+        function getWorksheetsData(title, worksheets, callback) {
           // read all worksheet rows data
           getAllRows(worksheets)
-            .then(worksheetsData => {
-              sheetData.data = worksheetsData;
-              callback(null, sheetData);
+            .then(worksheetData => {
+              callback(null, {
+                title,
+                worksheetData,
+              });
             })
             .catch(err => callback(err));
         }
@@ -72,12 +64,12 @@ export function readExcelFileById(fileId) {
         // callback function for handling errors
 
         if (error) {
-          console.log("error:" + error);
+          console.log('error:' + error);
           reject(error);
         }
 
         if (results) {
-          resolve(sheetData);
+          resolve(results);
         }
       }
     );
