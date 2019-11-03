@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build && node lib",
+    "prestart": "yarn build",
+    "start": "node lib",
     "start:dev": "nodemon --inspect lib start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib",
