@@ -7,12 +7,12 @@
     "start": "node dist/index.js",
     "start:dev": "nodemon --watch .env --watch src --exec babel-node src --source-maps",
     "build": "rimraf dist && babel src -D --out-dir dist",
-    "eslint": "eslint src",
-    "eslint:fix": "eslint --fix src",
+    "eslint": "eslint \"{src,api,public}/**/*.{js,jsx}\"",
+    "eslint:fix": "eslint --fix \"{src,api,public}/**/*.{js,jsx}\"",
     "lint": "yarn prettier && yarn eslint",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "prettier": "prettier --list-different \"{src,api}/**/*.{js,jsx}\" \"{src,api,public}/**/*.{html,css,md,yml,yml,json}\" --loglevel warn",
-    "prettier:fix": "prettier --write \"{src,api}/**/*.{js,jsx}\" \"{src,api,public}/**/*.{html,css,md,yml,yml,json}\" --loglevel warn"
+    "prettier": "prettier --list-different \"{src,api,public}/**/*.{js,jsx,html,css,md,yml,yml,json}\" --loglevel warn",
+    "prettier:fix": "prettier --write \"{src,api,public}/**/*.{js,jsx,html,css,md,yml,yml,json}\" --loglevel warn"
   },
   "dependencies": {
     "async": "^3.1.0",
