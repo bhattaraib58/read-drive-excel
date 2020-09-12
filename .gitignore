@@ -118,3 +118,8 @@ public
 
 #USER OWN NEED
 client_secret.json
+
+# build
+build
+lib
+dist
