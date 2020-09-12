@@ -6,7 +6,7 @@ const router = Router();
 router.get('/', (req, res) => {
   res.json({
     app: process.env.APP_NAME,
-    version: process.env.APP_VERSION,
+    version: process.env.APP_VERSION
   });
 });
 

@@ -10,7 +10,7 @@ const credentials = {
   auth_uri: process.env.auth_uri,
   token_uri: process.env.token_uri,
   auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
-  client_x509_cert_url: process.env.client_x509_cert_url,
+  client_x509_cert_url: process.env.client_x509_cert_url
 };
 
 export default credentials;

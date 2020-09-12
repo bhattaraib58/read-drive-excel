@@ -1,9 +1,8 @@
 import * as driveExcelService from '../API/googleDriveExcelAPI';
 
 /**
- * Read Excel file By Its ID
+ * Read Excel file By Its ID.
  *
- * @export
  * @param {*} fileId
  * @returns
  */

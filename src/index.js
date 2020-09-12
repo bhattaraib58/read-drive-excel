@@ -16,26 +16,27 @@ app.use(errorHandler.bodyParser);
 
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: true
   })
 );
 
-//API Routes
+// API Routes
 app.use('/api', routes);
 
 app.use('*', (req, res) => {
-  console.log(`Path/Method Not Supported:: ${req.url} ${req.method}`);
+  console.warn(`Path/Method Not Supported:: ${req.url} ${req.method}`);
+
   res.json({
     error: {
-      message: 'Path/Method Not Supported',
-    },
+      message: 'Path/Method Not Supported'
+    }
   });
 });
 
 app.use(errorHandler.genericErrorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server Started on::${PORT}/api`);
+  console.warn(`Server Started on::${PORT}/api`);
 });
 
 export default app;

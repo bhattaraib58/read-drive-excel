@@ -6,29 +6,35 @@ import credentials from '../constants/credentials';
  * Read all worksheets data and handle their promise as one.
  *
  * @param {*} worksheets
- * @returns {}  Promise - Worksheet Array or Error
+ * @returns {}  Promise - Worksheet Array or Error.
  */
 function getAllRows(worksheets) {
-  function getWorksheetRows(worksheet) {
-    // Returns promise object, worksheet.getRows reads the single worksheet at a time
-    return new Promise((resolve, reject) => {
-      worksheet.getRows(worksheet.id, (worksheetError, dataRows) => {
-        if (worksheetError) {
-          reject(worksheetError);
-        }
+  // Get all worksheets promise data,
+  return Promise.all(
+    worksheets.map((worksheet) => {
+      // Returns promise object, worksheet.getRows reads the single worksheet at a time
+      return new Promise((resolve, reject) => {
+        worksheet.getRows(worksheet.id, (worksheetError, dataRows) => {
+          if (worksheetError) {
+            reject(worksheetError);
+          }
 
-        resolve({
-          title: worksheet.title,
-          data: dataRows,
+          resolve({
+            title: worksheet.title,
+            data: dataRows
+          });
         });
       });
-    });
-  }
-
-  // Get all worksheets promise data,
-  return Promise.all(worksheets.map(worksheet => getWorksheetRows(worksheet)));
+    })
+  );
 }
 
+/**
+ * Read Excel File By Id.
+ *
+ * @param {*} fileId
+ * @returns
+ */
 export function readExcelFileById(fileId) {
   // Create a document object using the ID of the spreadsheet - obtained from its URL.
   const doc = new GoogleSpreadsheet(fileId);
@@ -45,26 +51,25 @@ export function readExcelFileById(fileId) {
           doc.getInfo(callback);
         },
         function getWorksheets(docInfo, callback) {
-          //set worksheet title and move to next to get all worksheet data
+          // set worksheet title and move to next to get all worksheet data
           callback(null, docInfo.title, docInfo.worksheets);
         },
         function getWorksheetsData(title, worksheets, callback) {
           // read all worksheet rows data
           getAllRows(worksheets)
-            .then(worksheetData => {
+            .then((worksheetData) => {
               callback(null, {
                 title,
-                worksheetData,
+                worksheetData
               });
             })
-            .catch(err => callback(err));
+            .catch((err) => callback(err));
         }
       ],
       (error, results) => {
         // callback function for handling errors
 
         if (error) {
-          console.log('error:' + error);
           reject(error);
         }
 
