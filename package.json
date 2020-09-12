@@ -1,25 +1,20 @@
 {
   "name": "read-drive-excel",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.2.0",
+  "license": "MIT",
+  "author": "bhattaraib58",
   "scripts": {
-    "start": "node lib",
-    "start:dev": "nodemon --inspect lib start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf lib && babel src --out-dir lib",
-    "build:dev": "rm -rf lib && babel src --watch --out-dir lib",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon --watch .env --watch src --exec babel-node src --source-maps",
+    "build": "rimraf dist && babel src -D --out-dir dist",
     "eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
     "lint": "yarn prettier && yarn eslint",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "prettier": "prettier \"{src,api}/**/*.js\" \"{src,api}/**/*.jsx\"",
-    "prettier:fix": "prettier --write \"{src,api}/**/*.js\" \"{src,api}/**/*.jsx\""
+    "prettier": "prettier --list-different \"{src,api}/**/*.{js,jsx}\" \"{src,api,public}/**/*.{html,css,md,yml,yml,json}\" --loglevel warn",
+    "prettier:fix": "prettier --write \"{src,api}/**/*.{js,jsx}\" \"{src,api,public}/**/*.{html,css,md,yml,yml,json}\" --loglevel warn"
   },
-  "author": "bhattaraib58",
-  "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.6.3",
     "async": "^3.1.0",
     "atob": "^2.1.2",
     "body-parser": "^1.19.0",
@@ -30,16 +25,16 @@
     "http-status-codes": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.3",
-    "eslint": "^6.6.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^1.19.4",
-    "prettier": "^1.18.2"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^7.7.0",
+    "eslint-config-leapfrog": "^3.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   }
 }
